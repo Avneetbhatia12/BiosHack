@@ -1,0 +1,76 @@
+{
+  "_comment": "PS2 object vocabulary. Each profile maps canonical object names (reported as object_name) to the text the detector is queried with, grouped by portable / fixed / unknown. 'auto' picks a profile from the clip name via profile_rules; unmatched clips use default_profile. Nothing here is guaranteed to be detected. Workspace profiles follow the team's dataset card (8 reviewed clips).",
+  "prompt_template": "a photo of a {}",
+  "default_profile": "generic",
+  "profile_rules": [
+    {"match": "mytronlabs-000003", "profile": "repair_bench"},
+    {"match": "mytronlabs-000060", "profile": "granite_factory"},
+    {"match": "SKL00089", "profile": "electrical_shop"}
+  ],
+  "per_class_conf": {
+    "_comment": "per-object confidence thresholds; large fixed surfaces need more evidence",
+    "table": 0.25, "workbench": 0.25, "counter": 0.25, "industrial_machine": 0.2, "conveyor": 0.2
+  },
+  "profiles": {
+    "generic": {
+      "portable": {
+        "screwdriver": "screwdriver", "wrench": "wrench", "spanner": "spanner", "pliers": "pliers",
+        "hammer": "hammer", "drill": "power drill", "hand_tool": "hand tool", "wire": "wire", "cable": "cable",
+        "screw": "screw", "bolt": "bolt", "nut": "metal nut", "metal_part": "small metal component",
+        "electrical_component": "electrical component", "workpiece": "workpiece", "box": "box",
+        "container": "container", "cloth": "cloth rag"
+      },
+      "fixed": {
+        "industrial_machine": "industrial machine", "machine_surface": "machine surface",
+        "workbench": "workbench", "table": "table", "shelf": "shelf", "conveyor": "conveyor belt",
+        "work_surface": "fixed work surface"
+      }
+    },
+    "repair_bench": {
+      "_comment": "Session 000003: cast-iron circular bench with a lathe / polishing spindle; small fittings handled with pinch grips.",
+      "portable": {
+        "metal_part": "small brass metal fitting", "carburetor": "carburetor", "screwdriver": "screwdriver",
+        "bit_set": "screwdriver bit set", "blade": "razor blade", "pliers": "pliers", "lever": "metal lever handle",
+        "nameplate": "small white nameplate", "bracket": "small metal bracket", "newspaper": "newspaper",
+        "towel": "towel", "phone": "smartphone", "bottle": "plastic bottle", "jar": "small jar with green liquid",
+        "can": "small metal can"
+      },
+      "fixed": {
+        "workbench": "round metal workbench", "lathe_spindle": "lathe spindle", "bench_clamp": "clamp bolted to a bench",
+        "motor": "electric motor"
+      }
+    },
+    "granite_factory": {
+      "_comment": "Session 000060: roller conveyor, granite slabs, overhead crane. A slab on the conveyor is treated as portable (it is slid by hand); slabs stored upright in racks are not modelled separately.",
+      "portable": {
+        "cloth": "wiping cloth", "pendant_controller": "yellow crane remote control", "chain": "steel chain",
+        "granite_slab": "granite slab", "wood_plank": "wooden plank"
+      },
+      "fixed": {
+        "conveyor": "roller conveyor with red rollers", "crane_clamp": "yellow slab lifting clamp",
+        "trolley": "a-frame cart", "polishing_machine": "polishing machine"
+      },
+      "co_contact_pairs": [["cloth", "granite_slab"]]
+    },
+    "electrical_shop": {
+      "_comment": "Session SKL00089: wooden shop counter; long aluminium LED strip profiles are the main handled objects.",
+      "portable": {
+        "led_strip": "long aluminium LED strip", "screwdriver": "screwdriver", "screw_bowl": "small metal bowl",
+        "led_bulb": "white dome ceiling light", "crate": "plastic crate", "cardboard_box": "cardboard box",
+        "plastic_wrap": "plastic wrap", "fitting": "small plastic end cap"
+      },
+      "fixed": {
+        "counter": "wooden shop counter", "shelf": "shelf"
+      }
+    }
+  },
+  "yolo_coco_map": {
+    "_comment": "COCO classes the YOLO fallback can report. COCO has NO screwdriver, wrench, pliers, hammer, drill, cable, bolt or machine classes. A fine-tuned YOLO model whose class names match the canonical names above needs no entry here.",
+    "scissors": "portable", "knife": "portable", "bottle": "portable", "cup": "portable",
+    "cell phone": "portable", "remote": "portable", "book": "portable", "mouse": "portable",
+    "keyboard": "portable", "laptop": "portable", "handbag": "portable", "backpack": "portable",
+    "suitcase": "portable", "toothbrush": "portable", "hair drier": "portable",
+    "dining table": "fixed", "chair": "fixed", "bench": "fixed", "refrigerator": "fixed",
+    "oven": "fixed", "microwave": "fixed", "sink": "fixed", "tv": "fixed"
+  }
+}

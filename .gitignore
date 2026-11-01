@@ -1,0 +1,112 @@
+# =====================================================================
+# HandTrace .gitignore
+# The factory footage is private (hackathon data-use agreement): no clip, frame, screenshot,
+# label, demo video, model weight or secret may ever be committed. Keep this strict.
+# =====================================================================
+
+# ---- Private data and generated outputs (only the placeholders are tracked) ----
+data/*
+!data/README.md
+outputs/*
+!outputs/.gitkeep
+egohack-data/
+clips/
+clips_480p/
+runs/
+results/
+demo/
+review_frames/
+handtrace_run/
+
+# ---- Videos -----------------------------------------------------------
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.webm
+*.m4v
+*.wmv
+*.flv
+*.mpg
+*.mpeg
+
+# ---- Frames, screenshots, images (no data imagery may leak) -----------
+*.jpg
+*.jpeg
+*.png
+*.bmp
+*.gif
+*.tif
+*.tiff
+*.webp
+frames/
+*_frames/
+
+# ---- Private labels, audits and derived per-frame data ----------------
+eval/labels/
+labels/
+annotations/
+*.jsonl
+*_labels.json
+*_labels.csv
+*manual_audit*.csv
+*_review.html
+ps5_dashboard.html
+results.zip
+
+# ---- Model weights and external model checkouts -----------------------
+models/
+weights/
+checkpoints/
+/WiLoR/
+mano_data/
+chumpy_src/
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.task
+*.tflite
+*.safetensors
+*.bin
+*.h5
+*.pkl
+*.npz
+*.obj
+
+# ---- Secrets ------------------------------------------------------------
+.env
+.env.*
+!.env.example
+*.env
+kaggle.json
+.kaggle/
+*.key
+secrets*
+
+# ---- Temporary pipeline files -------------------------------------------
+*.partial
+*.tmp
+
+# ---- Python / environments / notebooks ----------------------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+env/
+ENV/
+egohack/
+.ipynb_checkpoints/
+
+# ---- OS / editor ----------------------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/

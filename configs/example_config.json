@@ -1,0 +1,18 @@
+{
+  "_comment": "Example settings for `python -m handtrace.cli all --config configs/example_config.json`. Keys are the CLI flag names with underscores; command-line flags override them. Paths are placeholders: point them at your own private copy of the clips.",
+  "clips": ["data/clips"],
+  "out": "outputs",
+  "wilor": "WiLoR",
+  "stages": "ps1,ps2,ps3,ps5",
+  "demo": [],
+  "mode": "fp32",
+  "det_imgsz": 640,
+  "frame_step": 1,
+  "handedness_swap": false,
+  "obj_backend": "owlv2",
+  "ps3_model": "auto",
+  "ps3_fps": 2.0,
+  "small_copies": [],
+  "workers": null,
+  "max_frames": null
+}

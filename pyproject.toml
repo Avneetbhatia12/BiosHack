@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "handtrace"
+version = "1.0.0"
+description = "Egocentric factory video -> hand tracking (PS1), hand-object contact (PS2), task-step timeline (PS3), insights (PS5)"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.10"
+# Light core: post-processing, PS2 contact logic, PS3 validation/merging, PS5 tools, review, evaluation.
+# PyTorch is NOT listed: install the build that matches your CUDA (https://pytorch.org/get-started/locally/).
+dependencies = [
+    "numpy>=1.26",
+    "opencv-python>=4.9",
+    "pandas>=2.0",
+    "scipy>=1.10",
+]
+
+[project.optional-dependencies]
+# GPU stages (PS1 WiLoR, PS2 detectors). ultralytics==8.1.34 must be installed with --no-deps (scripts/setup.sh).
+gpu = ["smplx==0.1.28", "yacs", "timm", "einops", "pytorch-lightning", "scikit-image", "trimesh", "pyrender",
+       "transformers>=4.40", "huggingface_hub", "thop", "py-cpuinfo"]
+ps3 = ["google-genai", "pydantic>=2"]
+review = ["matplotlib>=3.7", "ipywidgets>=8"]
+dev = ["pytest>=8", "pyflakes"]
+
+[project.scripts]
+handtrace = "handtrace.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["handtrace*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

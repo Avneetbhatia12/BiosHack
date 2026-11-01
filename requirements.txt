@@ -1,0 +1,39 @@
+# HandTrace runtime dependencies.
+#
+# PyTorch / torchvision are NOT pinned here: install the build for your CUDA version first
+# (https://pytorch.org/get-started/locally/). On Kaggle / Colab keep the preinstalled ones; the notebook installs
+# everything below under a constraints file so torch, numpy and OpenCV are never replaced.
+#
+# ultralytics==8.1.34 (WiLoR's detector runtime) must be installed separately WITHOUT dependencies, otherwise it
+# replaces torch:   pip install --no-deps ultralytics==8.1.34   (scripts/setup.sh does this)
+
+# core (CPU): post-processing, PS2 contact logic, PS3 validation, PS5 tools, evaluation
+numpy>=1.26
+opencv-python>=4.9
+pandas>=2.0
+scipy>=1.10
+
+# PS1 / PS2 on GPU (WiLoR reconstruction, OWLv2 / SAM 3 object detection)
+smplx==0.1.28
+yacs
+timm
+einops
+pytorch-lightning
+scikit-image
+trimesh
+pyrender
+transformers>=4.40
+huggingface_hub
+thop
+py-cpuinfo
+
+# PS3 (Gemini video understanding)
+google-genai
+pydantic>=2
+
+# review tools and notebook plots
+matplotlib>=3.7
+ipywidgets>=8
+
+# tests
+pytest>=8
