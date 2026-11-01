@@ -194,7 +194,9 @@ The team's own code is MIT-licensed ([LICENSE](LICENSE)); third-party models kee
 
 | Name | Role |
 |---|---|
-| _to be added_ | |
-| _to be added_ | |
+| Tanmay Bansal | |
+| Divya | |
+| Sehaj |
+| Avneet |
 
 Hackathon: Egocentric Vision Hackathon, BIOS × MytronLabs, 30 Oct – 1 Nov 2026.
